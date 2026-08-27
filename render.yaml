@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: alekseev-pro-bot
+    runtime: python
+    plan: free
+    region: frankfurt
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    healthCheckPath: /
+    autoDeployTrigger: commit
+    maxShutdownDelaySeconds: 120
+    envVars:
+      - key: RUNTIME_MODE
+        value: webhook
+      - key: TELEGRAM_GROUP_ID
+        value: -1003948369276
+      - key: GEMINI_MODEL
+        value: gemini-3.6-flash
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: TELEGRAM_API_ID
+        sync: false
+      - key: TELEGRAM_API_HASH
+        sync: false
+      - key: TELEGRAM_USER_SESSION_STRING
+        sync: false
+      - key: WEBHOOK_SECRET
+        sync: false
